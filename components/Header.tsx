@@ -4,7 +4,7 @@ import Image from "next/image";
 
 function Header() {
   return (
-    <div className="bg-fuchsia-300 p-4">
+    <div className="bg-fuchsia-300 items-center p-4">
       <header className="flex justify-between">
         <div>
           <Image
@@ -16,7 +16,7 @@ function Header() {
           />
         </div>
 
-        <div className="flex space-x-4 gap-10">
+        <div className="flex items-center space-x-4 gap-10">
           <Link href="/" className="text-white text-lg">
             Home
           </Link>

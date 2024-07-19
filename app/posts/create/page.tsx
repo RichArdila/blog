@@ -40,7 +40,7 @@ const CreatePost: React.FC = () => {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+            className="mt-1 block w-full border-gray-300 rounded-md shadow-xl"
             required
           />
         </div>
@@ -49,7 +49,7 @@ const CreatePost: React.FC = () => {
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+            className="mt-1 block h-60 w-full border-gray-300 rounded-md shadow-xl"
             required
           />
         </div>
