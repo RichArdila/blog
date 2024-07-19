@@ -4,7 +4,7 @@ import Image from "next/image";
 
 function Header() {
   return (
-    <div className="bg-violet-400 p-4">
+    <div className="bg-fuchsia-300 p-4">
       <header className="flex justify-between">
         <div>
           <Image

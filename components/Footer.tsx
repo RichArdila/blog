@@ -6,7 +6,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css"; // Import the CSS styles 
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-violet-400 text-white py-6">
+    <footer className="bg-fuchsia-300 text-white py-6">
       <div className="container mx-auto flex flex-col items-center space-y-4">
         <div className="flex space-x-4">
           <a

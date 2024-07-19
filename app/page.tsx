@@ -1,33 +1,17 @@
+// app/page.tsx
+
 import * as React from "react";
 import Link from "next/link";
+import prisma from "@/lib/prisma";
 import BlogCard from "@/components/BlogCard";
 
-const blogPosts = [
-  {
-    id: "1",
-    title: "My Blog Post 1",
-    content:
-      "This is my first blog post. It contains more than fifty characters to demonstrate the preview feature.",
-  },
-  {
-    id: "2",
-    title: "My Blog Post 2",
-    content:
-      "This is my second blog post. It also contains more than fifty characters to demonstrate the preview feature.",
-  },
-  {
-    id: "3",
-    title: "My Blog Post 3",
-    content:
-      "This is my third blog post. It contains a lot of content to show how the read more feature works effectively.",
-  },
-];
+export default async function Home() {
+  const blogPosts = await prisma.post.findMany();
 
-function Home() {
   return (
-    <div className="p-4">
-      <div className="mb-4 flex justify-between">
-        <h1 className="text-3xl font-bold">My Blog</h1>
+    <div className="p-20 bg-pink-100">
+      <div className="mb-4 flex justify-between ">
+        <h1 className="text-4xl font-bold text-center">Blog</h1>
         <Link
           href="/posts/create"
           className="bg-blue-500 text-white px-4 py-2 rounded-md"
@@ -48,5 +32,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;

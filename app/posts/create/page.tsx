@@ -1,3 +1,6 @@
+// app/posts/create/page.tsx
+"use client";
+
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -7,11 +10,24 @@ const CreatePost: React.FC = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para guardar la publicación en tu base de datos
-    console.log("Post created:", { title, content });
-    router.push("/"); // Redirigir a la página principal después de crear la publicación
+
+    try {
+      const response = await fetch("/api/posts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title, content }),
+      });
+
+      if (response.ok) {
+        router.push("/");
+      } else {
+        console.error("Failed to create post");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
