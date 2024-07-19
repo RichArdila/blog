@@ -1,5 +1,8 @@
+"use client";
+
 import * as React from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface BlogCardProps {
   id: string;
@@ -24,13 +27,19 @@ const BlogCard: React.FC<BlogCardProps> = ({ id, title, content }) => {
       <div className="p-6 pt-0">
         <p className="text-sm text-gray-600">{`${content.slice(0, 50)}...`}</p>
       </div>
-      <div className="flex items-center p-6 pt-0">
+      <div className="flex items-center justify-between p-6 pt-0">
         <button
           onClick={handleReadMore}
           className="text-blue-500 hover:underline"
         >
           Read More
         </button>
+        <Link
+          href={`/posts/edit/${id}`}
+          className="text-blue-500 hover:underline"
+        >
+          Edit
+        </Link>
       </div>
     </div>
   );

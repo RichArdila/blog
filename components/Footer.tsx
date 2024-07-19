@@ -32,6 +32,7 @@ const Footer: React.FC = () => {
             <FontAwesomeIcon icon={faEnvelope} size="2x" />
           </a>
         </div>
+        <p>Copyright © 2024 My Blog. All rights reserved.</p>
       </div>
     </footer>
   );
