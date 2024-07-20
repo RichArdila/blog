@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="flex flex-col min-h-screen">
           <Header />
-          <div className="flex-1">{children}</div>
+          <div className="bg-pink-100 flex-1">{children}</div>
           <Footer />
         </div>
       </body>

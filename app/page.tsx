@@ -9,7 +9,7 @@ export default async function Home() {
   const blogPosts = await prisma.post.findMany();
 
   return (
-    <div className="p-20 bg-pink-100">
+    <div className="p-20">
       <div className="mb-4 flex justify-between ">
         <h1 className="text-4xl font-bold text-center">Blog</h1>
         <Link
