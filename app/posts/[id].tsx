@@ -1,41 +1,51 @@
-import { useRouter } from "next/router";
+"use client";
 
-const posts = [
-  {
-    id: "1",
-    title: "My Blog Post 1",
-    content:
-      "This is my first blog post. It contains more than fifty characters to demonstrate the preview feature.",
-  },
-  {
-    id: "2",
-    title: "My Blog Post 2",
-    content:
-      "This is my second blog post. It also contains more than fifty characters to demonstrate the preview feature.",
-  },
-  {
-    id: "3",
-    title: "My Blog Post 3",
-    content:
-      "This is my third blog post. It contains a lot of content to show how the read more feature works effectively.",
-  },
-];
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
-const Post = () => {
+export default function EditPostPage({ postId }) {
+  const { data: session } = useSession();
   const router = useRouter();
-  const { id } = router.query;
-  const post = posts.find((post) => post.id === id);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
-  if (!post) {
-    return <p>Post not found</p>;
+  useEffect(() => {
+    if (!session) {
+      router.push("/login");
+    } else {
+      // Cargar datos del post
+    }
+  }, [session]);
+
+  if (!session) {
+    return null; // o algún mensaje de carga
   }
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // Implementar lógica de edición de post
+  };
+
   return (
-    <div className="p-4">
-      <h1 className="text-3xl font-semibold">{post.title}</h1>
-      <p className="mt-4">{post.content}</p>
+    <div>
+      <h1>Edit Post</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          name="title"
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+        <textarea
+          name="content"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          required
+        ></textarea>
+        <button type="submit">Update</button>
+      </form>
     </div>
   );
-};
-
-export default Post;
+}

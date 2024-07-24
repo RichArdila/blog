@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { signOut } from "next-auth/react";
 
 function Header() {
   return (
@@ -32,7 +33,13 @@ function Header() {
           <Link href="/signup" className="text-white text-lg">
             Sign Up
           </Link>
-          <Link href="/login" className="text-white text-lg">
+          <button
+            className="text-white text-lg"
+            onClick={() => signOut({ callbackUrl: "/" })}
+          >
+            LogOut
+          </button>
+          <Link href="/auth/signin" className="text-white text-lg">
             Log In
           </Link>
         </div>

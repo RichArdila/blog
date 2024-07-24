@@ -1,16 +1,15 @@
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import { config } from "@fortawesome/fontawesome-svg-core";
-config.autoAddCss = false;
-
 import { AppProps } from "next/app";
-import Footer from "@/components/Footer";
+import { SessionProvider } from "next-auth/react";
+import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps<{ session: any }>) {
   return (
-    <>
+    <SessionProvider session={session}>
       <Component {...pageProps} />
-      <Footer />
-    </>
+    </SessionProvider>
   );
 }
 
