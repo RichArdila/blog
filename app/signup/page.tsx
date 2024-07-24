@@ -1,5 +1,6 @@
 "use client";
 
+import { signIn } from "next-auth/react";
 import { useState } from "react";
 
 export default function SignupPage() {
@@ -8,7 +9,12 @@ export default function SignupPage() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Aquí puedes implementar la lógica de registro
+
+    await signIn("credentials", {
+      username,
+      password,
+      callbackUrl: "/",
+    });
   };
 
   return (
