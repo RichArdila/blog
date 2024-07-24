@@ -2,6 +2,7 @@
 
 import { signIn } from "next-auth/react";
 import { useState } from "react";
+import { PrismaClient } from "@prisma/client";
 
 export default function SignupPage() {
   const [username, setUsername] = useState("");
@@ -10,10 +11,15 @@ export default function SignupPage() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    await signIn("credentials", {
-      username,
-      password,
-      callbackUrl: "/",
+    const prisma = new PrismaClient();
+
+    await prisma.user.create({
+      data: {
+        name: username,
+        email: username,
+        password,
+        role: "user",
+      },
     });
   };
 

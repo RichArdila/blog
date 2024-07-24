@@ -11,17 +11,6 @@ export default function LoginPage() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const prisma = new PrismaClient();
-
-    await prisma.user.create({
-      data: {
-        name: username,
-        email: username,
-        password,
-        role: "user",
-      },
-    });
-
     await signIn("credentials", {
       username,
       password,
