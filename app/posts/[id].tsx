@@ -1,51 +1,26 @@
-"use client";
+// pages/api/posts/[id].ts
+import { NextApiRequest, NextApiResponse } from "next";
+import { PrismaClient } from "@prisma/client";
 
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+const prisma = new PrismaClient();
 
-export default function EditPostPage({ postId }) {
-  const { data: session } = useSession();
-  const router = useRouter();
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const { id } = req.query;
 
-  useEffect(() => {
-    if (!session) {
-      router.push("/login");
-    } else {
-      // Cargar datos del post
+  if (req.method === "DELETE") {
+    try {
+      await prisma.post.delete({
+        where: { id: Number(id) },
+      });
+      res.status(200).json({ message: "Post deleted successfully" });
+    } catch (error) {
+      res.status(500).json({ error: "Error deleting post" });
     }
-  }, [session]);
-
-  if (!session) {
-    return null; // o algún mensaje de carga
+  } else {
+    res.setHeader("Allow", ["DELETE"]);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    // Implementar lógica de edición de post
-  };
-
-  return (
-    <div>
-      <h1>Edit Post</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          name="title"
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <textarea
-          name="content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          required
-        ></textarea>
-        <button type="submit">Update</button>
-      </form>
-    </div>
-  );
 }

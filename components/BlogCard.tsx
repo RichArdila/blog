@@ -17,6 +17,20 @@ const BlogCard: React.FC<BlogCardProps> = ({ id, title, content }) => {
     router.push(`/posts/${id}`);
   };
 
+  const handleDelete = async () => {
+    if (confirm("Are you sure you want to delete this post?")) {
+      const response = await fetch(`/api/posts/${id}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        alert("Post deleted successfully");
+        router.refresh(); // Refresh the page or update the state to remove the deleted post from the list
+      } else {
+        alert("Failed to delete the post");
+      }
+    }
+  };
+
   return (
     <div className="rounded-lg border bg-white text-black shadow-sm">
       <div className="flex flex-col space-y-1.5 p-8">
@@ -40,6 +54,12 @@ const BlogCard: React.FC<BlogCardProps> = ({ id, title, content }) => {
         >
           Edit
         </Link>
+        <button
+          onClick={handleDelete}
+          className="text-blue-500 hover:underline"
+        >
+          Delete
+        </button>
       </div>
     </div>
   );

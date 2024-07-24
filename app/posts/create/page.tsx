@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent } from "react";
 
 interface CreatePostPageProps {
   session: null;
@@ -14,7 +14,25 @@ export default function CreatePostPage({}: CreatePostPageProps) {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    // Implementar lógica de creación de post
+
+    try {
+      const response = await fetch("/api/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title, content }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create post");
+      }
+
+      // Redirigir al home después de crear el post
+      router.push("/");
+    } catch (error) {
+      console.error("Error creating post:", error);
+    }
   };
 
   return (

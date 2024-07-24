@@ -2,16 +2,18 @@
 
 import * as React from "react";
 import Link from "next/link";
-import prisma from "@/lib/prisma";
 import BlogCard from "@/components/BlogCard";
+import { getBlogPosts } from "@/lib/actions";
 
 export default async function Home() {
-  const blogPosts = await prisma.post.findMany();
+  const blogPosts = await getBlogPosts();
 
   return (
     <div className="p-20">
       <div className="mb-4 flex justify-between ">
-        <h1 className="text-4xl font-bold text-center">Blog</h1>
+        <h1 className="text-blue-400 text-4xl font-bold text-center">
+          My Decoration Blog!
+        </h1>
         <Link
           href="/posts/create"
           className="bg-blue-500 text-white px-4 py-2 rounded-md"
