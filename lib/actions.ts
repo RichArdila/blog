@@ -25,3 +25,10 @@ export async function getBlogPostsById(pid) {
   revalidatePath(`/posts/${pid}`);
   return res;
 }
+
+export async function deletePost(pid) {
+  const res = await prisma.post.delete({
+    where: { id: Number(pid) },
+  });
+  //revalidatePath("/"); terminar la configuracion de esta linea.
+}

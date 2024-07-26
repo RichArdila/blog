@@ -36,7 +36,7 @@ export default function CreatePostPage({}: CreatePostPageProps) {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-pink-100">
-      <div className="bg-white p-10 rounded-lg shadow-md w-full max-w-md">
+      <div className="bg-white p-10 rounded-lg shadow-md w-full max-w-4xl">
         <h1 className="text-2xl font-bold mb-6">Create Post</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">

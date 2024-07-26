@@ -6,4 +6,6 @@ export default withAuth({
   },
 });
 
-export const config = { matcher: ["/posts/create/:path*"] };
+export const config = {
+  matcher: ["/posts/create/:path*", "/posts/edit/:path*"],
+};

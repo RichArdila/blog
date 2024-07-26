@@ -14,7 +14,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ id, title, content }) => {
   const router = useRouter();
 
   const handleReadMore = () => {
-    router.push(`/posts/${id}`);
+    router.push(`/posts/readmore/${id}`);
   };
 
   const handleDelete = async () => {

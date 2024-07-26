@@ -30,9 +30,6 @@ function Header() {
         </div>
 
         <div className="flex items-center space-x-4">
-          <Link href="/signup" className="text-white text-lg">
-            Sign Up
-          </Link>
           <button
             className="text-white text-lg"
             onClick={() => signOut({ callbackUrl: "/" })}
