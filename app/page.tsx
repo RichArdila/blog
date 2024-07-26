@@ -1,5 +1,4 @@
 // app/page.tsx
-
 import * as React from "react";
 import Link from "next/link";
 import BlogCard from "@/components/BlogCard";

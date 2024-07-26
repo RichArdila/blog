@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 interface BlogCardProps {
-  id: string;
+  id: number;
   title: string;
   content: string;
 }
@@ -24,7 +24,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ id, title, content }) => {
       });
       if (response.ok) {
         alert("Post deleted successfully");
-        router.refresh(); // Refresh the page or update the state to remove the deleted post from the list
+        router.refresh();
       } else {
         alert("Failed to delete the post");
       }

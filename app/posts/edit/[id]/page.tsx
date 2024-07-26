@@ -1,22 +1,31 @@
-import * as React from "react";
-import { useRouter } from "next/router";
-import { getBlogPostById, updateBlogPost } from "@/lib/actions";
+"use client";
 
-const EditPost = () => {
+import { editPost, getBlogPostsById } from "@/lib/actions";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
+export default function Page({ params }) {
   const router = useRouter();
-  const { id } = router.query;
-  const [post, setPost] = React.useState(null);
+  const [post, setPost] = useState(null);
+  const id = params.id;
 
-  React.useEffect(() => {
-    if (id) {
-      getBlogPostById(id).then(setPost);
+  console.log(post);
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await getBlogPostsById(id);
+      console.log("resp", res);
+
+      setPost(res);
     }
+
+    fetchData();
   }, [id]);
 
   const handleUpdate = async (event) => {
     event.preventDefault();
     const { title, content } = event.target.elements;
-    await updateBlogPost(id, { title: title.value, content: content.value });
+    await editPost(id, title.value, content.value);
     router.push("/");
   };
 
@@ -35,6 +44,4 @@ const EditPost = () => {
       <button type="submit">Update</button>
     </form>
   );
-};
-
-export default EditPost;
+}

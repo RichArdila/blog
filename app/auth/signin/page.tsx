@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { PrismaClient } from "@prisma/client";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");

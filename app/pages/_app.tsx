@@ -14,3 +14,5 @@ function MyApp({
 }
 
 export default MyApp;
+
+//SessionProvider para proporcionar la sesión de autenticación a todos los componentes.

@@ -14,7 +14,6 @@ export default function CreatePostPage({}: CreatePostPageProps) {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-
     try {
       const response = await fetch("/api/posts", {
         method: "POST",
