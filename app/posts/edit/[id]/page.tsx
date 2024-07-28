@@ -9,13 +9,9 @@ export default function Page({ params }) {
   const [post, setPost] = useState(null);
   const id = params.id;
 
-  console.log(post);
-
   useEffect(() => {
     async function fetchData() {
       const res = await getBlogPostsById(id);
-      console.log("resp", res);
-
       setPost(res);
     }
 

@@ -3,6 +3,7 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { deletePost } from "@/lib/actions";
 
 interface BlogCardProps {
   id: number;
@@ -15,20 +16,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ id, title, content }) => {
 
   const handleReadMore = () => {
     router.push(`/posts/readmore/${id}`);
-  };
-
-  const handleDelete = async () => {
-    if (confirm("Are you sure you want to delete this post?")) {
-      const response = await fetch(`/api/posts/${id}`, {
-        method: "DELETE",
-      });
-      if (response.ok) {
-        alert("Post deleted successfully");
-        router.refresh();
-      } else {
-        alert("Failed to delete the post");
-      }
-    }
   };
 
   return (
@@ -55,12 +42,12 @@ const BlogCard: React.FC<BlogCardProps> = ({ id, title, content }) => {
           Edit
         </Link>
         <button
-          onClick={handleDelete}
+          onClick={() => deletePost(id)}
           className="text-blue-500 hover:underline"
         >
           Delete
         </button>
-      </div>
+      </div>{" "}
     </div>
   );
 };
