@@ -4,11 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, FormEvent } from "react";
 import { createPost } from "@/lib/actions";
 
-interface PageProps {
-  session: null;
-}
-
-export default function Page({}: PageProps) {
+export default function Page() {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
