@@ -16,7 +16,8 @@ export default function Page() {
         corporate event, we offer a wide range of balloon arrangements tailored
         to suit your needs. From whimsical birthday themes to sophisticated
         corporate setups, our designs are crafted to make your event
-        unforgettable.
+        unforgettable. We take pride in our attention to detail and commitment
+        to quality, ensuring that every balloon decoration is a work of art.
       </p>
 
       <div className="mb-8">
