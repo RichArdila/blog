@@ -2,9 +2,9 @@ import * as React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import "@fortawesome/fontawesome-svg-core/styles.css"; // Import the CSS styles for FontAwesome icons
+import "@fortawesome/fontawesome-svg-core/styles.css";
 
-const Footer: React.FC = () => {
+export default function Footer() {
   return (
     <footer className="bg-fuchsia-300 text-white py-6">
       <div className="container mx-auto flex flex-col items-center space-y-4">
@@ -36,6 +36,4 @@ const Footer: React.FC = () => {
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

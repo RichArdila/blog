@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { deletePost } from "@/lib/actions";
@@ -11,7 +10,7 @@ interface BlogCardProps {
   content: string;
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({ id, title, content }) => {
+export default function BlogCard({ id, title, content }: BlogCardProps) {
   const router = useRouter();
 
   const handleReadMore = () => {
@@ -50,6 +49,4 @@ const BlogCard: React.FC<BlogCardProps> = ({ id, title, content }) => {
       </div>{" "}
     </div>
   );
-};
-
-export default BlogCard;
+}

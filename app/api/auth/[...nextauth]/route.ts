@@ -1,6 +1,5 @@
 import NextAuth, { SessionOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
 
 export const authOptions = {
@@ -33,23 +32,6 @@ export const authOptions = {
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
-  // adapter: PrismaAdapter(prisma),
-  // callbacks: {
-  //   async jwt({ token, user }) {
-  //     if (user) {
-  //       token.id = user.id;
-  //       token.role = user.role;
-  //     }ß
-  //     return token;
-  //   },
-  //   async session({ session, token }) {
-  //     if (token) {
-  //       session.user.id = token.id;
-  //       session.user.role = token.role;
-  //     }
-  //     return session;
-  //   },
-  // },
 };
 
 export const handle = NextAuth(authOptions);

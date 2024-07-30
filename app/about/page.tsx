@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import Image from "next/image";
 
 export default function Page() {
@@ -11,7 +12,7 @@ export default function Page() {
         unique and vibrant balloon designs.
       </p>
       <p className="mb-4">
-        Whether you're planning an intimate birthday celebration or a grand
+        Whether you are planning an intimate birthday celebration or a grand
         corporate event, we offer a wide range of balloon arrangements tailored
         to suit your needs. From whimsical birthday themes to sophisticated
         corporate setups, our designs are crafted to make your event
