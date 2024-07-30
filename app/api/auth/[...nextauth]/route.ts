@@ -32,7 +32,8 @@ export const authOptions = {
       },
     }),
   ],
-  adapter: PrismaAdapter(prisma),
+  secret: process.env.NEXTAUTH_SECRET,
+  // adapter: PrismaAdapter(prisma),
   // callbacks: {
   //   async jwt({ token, user }) {
   //     if (user) {
