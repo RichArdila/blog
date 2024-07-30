@@ -4,9 +4,15 @@ import { editPost, getBlogPostsById } from "@/lib/actions";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function Page({ params }) {
+export default function Page({ params }: { params: any }) {
   const router = useRouter();
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState<{
+    id: number;
+    title: string;
+    content: string;
+    createdAt: Date;
+    updatedAt: Date;
+  } | null>(null);
   const id = params.id;
 
   useEffect(() => {
@@ -18,7 +24,7 @@ export default function Page({ params }) {
     fetchData();
   }, [id]);
 
-  const handleUpdate = async (event) => {
+  const handleUpdate = async (event: any) => {
     event.preventDefault();
     const { title, content } = event.target.elements;
     await editPost(id, title.value, content.value);

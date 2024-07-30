@@ -2,36 +2,25 @@
 
 import { useRouter } from "next/navigation";
 import { useState, FormEvent } from "react";
+import { createPost } from "@/lib/actions";
 
-interface CreatePostPageProps {
+interface PageProps {
   session: null;
 }
 
-export default function CreatePostPage({}: CreatePostPageProps) {
+export default function Page({}: PageProps) {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    try {
-      const response = await fetch("/api/posts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title, content }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to create post");
-      }
-
-      // Redirigir al home después de crear el post
-      router.push("/");
-    } catch (error) {
-      console.error("Error creating post:", error);
-    }
+    const { title, content } = event.target as typeof event.target & {
+      title: { value: string };
+      content: { value: string };
+    };
+    await createPost(title.value, content.value);
+    router.push("/");
   };
 
   return (

@@ -4,7 +4,7 @@ import Link from "next/link";
 import BlogCard from "@/components/BlogCard";
 import { getBlogPosts } from "@/lib/actions";
 
-export default async function Home() {
+export default async function Page() {
   const blogPosts = await getBlogPosts();
 
   return (

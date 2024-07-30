@@ -4,15 +4,20 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getBlogPostsById } from "@/lib/actions";
 
-const PostPage = ({ params }) => {
+export default function Page({ params }: { params: any }) {
   const router = useRouter();
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState<{
+    id: number;
+    title: string;
+    content: string;
+    createdAt: Date;
+    updatedAt: Date;
+  } | null>(null);
   const id = params.id;
 
   useEffect(() => {
     async function fetchData() {
       const res = await getBlogPostsById(id);
-      console.log("resp", res);
 
       setPost(res);
     }
@@ -32,6 +37,4 @@ const PostPage = ({ params }) => {
       </div>
     </div>
   );
-};
-
-export default PostPage;
+}

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { signOut } from "next-auth/react";
 
-function Header() {
+export default function Header() {
   return (
     <div className="bg-fuchsia-300 items-center p-4">
       <header className="flex justify-between">
@@ -44,5 +44,3 @@ function Header() {
     </div>
   );
 }
-
-export default Header;
